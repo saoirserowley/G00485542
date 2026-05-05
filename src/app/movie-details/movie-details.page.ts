@@ -77,7 +77,7 @@ export class MovieDetailsPage implements OnInit {
   }
 
   // gets the cast and crew for this movie from the api
-  // https://developer.themoviedb.org/docs
+  // // https://developer.themoviedb.org/reference/movie-credits
   loadCredits() {
     this.movieService.getMovieCredits(this.movieId).subscribe((data: any) => {
       this.cast = data.cast;

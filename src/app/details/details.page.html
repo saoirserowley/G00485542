@@ -1,13 +1,79 @@
-<ion-header [translucent]="true">
+<!-- details.page.html -->
+<!-- Shows information about a selected cast or crew member -->
+<!-- including their photo, bio, birthday and other movies they have been in -->
+<!-- https://ionicframework.com/docs/components -->
+
+<ion-header>
   <ion-toolbar>
-    <ion-title>details</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="goToHome()">
+        <ion-icon name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ person.name }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToFavourites()">
+        <ion-icon name="heart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">details</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+
+  <!-- person photo, if no image available show a placeholder -->
+  <!-- https://developer.themoviedb.org/docs/image-basics -->
+  <div style="padding: 16px;">
+    <img [src]="getImageUrl(person.profile_path)"
+         style="width:150px; height:200px; object-fit:cover; margin-bottom:12px;">
+
+    <!-- only show birthday if the api returns one -->
+    <!-- ngIf hides the element completely if the condition is false -->
+    <!-- https://angular.dev/guide/directives -->
+    <p *ngIf="person.birthday" style="font-size:16px; margin:4px 0;">
+      <strong>Born:</strong> {{ person.birthday }}
+      <span *ngIf="person.place_of_birth"> in {{ person.place_of_birth }}</span>
+    </p>
+
+    <!-- only show death date if there is one, most people wont have this -->
+    <p *ngIf="person.deathday" style="font-size:16px; margin:4px 0;">
+      <strong>Died:</strong> {{ person.deathday }}
+    </p>
+
+    <!-- also known as section, only shown if the array has entries -->
+    <div *ngIf="person.also_known_as && person.also_known_as.length > 0">
+      <p style="font-size:16px; margin:8px 0 4px 0;"><strong>Also Known As:</strong></p>
+      <!-- looping through the also known as array -->
+      <p *ngFor="let aka of person.also_known_as"
+         style="font-size:14px; color:#555; margin:2px 0;">
+        {{ aka }}
+      </p>
+    </div>
+
+    <!-- biography section -->
+    <p *ngIf="person.biography"
+       style="font-size:15px; line-height:1.6; margin-top:12px; color:#333;">
+      {{ person.biography }}
+    </p>
+
+  </div>
+
+  <!-- other movies this person has appeared in -->
+  <h2 style="padding: 10px 16px; font-size:20px; font-weight:bold; border-top:2px solid #ddd;">
+    Other Movies
+  </h2>
+
+  <!-- looping through their movie credits -->
+  <!-- clicking a movie navigates to its details page -->
+  <div *ngFor="let movie of movies"
+       (click)="goToMovieDetails(movie)"
+       style="display:flex; padding:10px 16px; border-bottom:1px solid #ddd; cursor:pointer; align-items:center;">
+
+    <img [src]="getImageUrl(movie.poster_path)"
+         style="width:60px; height:90px; object-fit:cover; flex-shrink:0; margin-right:12px;">
+
+    <p style="margin:0; font-size:16px; font-weight:bold;">{{ movie.title }}</p>
+
+  </div>
+
 </ion-content>
