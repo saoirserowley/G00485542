@@ -1,6 +1,8 @@
 <!-- home.page.html -->
-<!-- Template for the home page -->
-<!-- https://ionicframework.com/docs/components -->
+<!-- Template for the home page using Ionic card components for a cleaner look -->
+<!-- ion-card gives each movie a nice card style with shadow and rounded corners -->
+<!-- https://ionicframework.com/docs/api/card -->
+<!-- Flexbox reference: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ -->
 
 <ion-header>
   <ion-toolbar>
@@ -14,33 +16,43 @@
 </ion-header>
 
 <ion-content>
+  <!-- search bar for typing in a movie name -->
+  <!-- ngModel does two way binding so searchQuery updates as the user types -->
+  <!-- https://angular.dev/guide/forms -->
   <ion-searchbar
     [(ngModel)]="searchQuery"
     placeholder="Search Movie Name">
   </ion-searchbar>
 
-  <ion-button expand="full" (click)="search()">SEARCH</ion-button>
+  <ion-button expand="full" (click)="search()" 
+    style="--background: #CAD3C1; --color: #333; --border-radius: 30px; margin: 8px 16px;">
+  SEARCH
+</ion-button>
 
-  <h2 style="padding: 10px 16px;">{{ heading }}</h2>
+  <h2 style="padding: 10px 16px; font-size:18px; font-weight:bold;">{{ heading }}</h2>
 
-  <!-- each movie displayed as a card with image on left and text on right -->
-  <div *ngFor="let movie of movies"
-     (click)="goToMovieDetails(movie)"
-     style="display:flex; padding:10px 16px; border-bottom:1px solid #ddd; cursor:pointer; align-items:flex-start; width:100%;">
+  <!-- each movie displayed as an ion-card -->
+  <!-- ion-card is an Ionic component that gives a nice card style layout -->
+  <!-- https://ionicframework.com/docs/api/card -->
+  <ion-card *ngFor="let movie of movies" (click)="goToMovieDetails(movie)">
 
-    <!-- movie poster on the left -->
-    <img [src]="getImageUrl(movie.poster_path)"
-     style="width:200px; height:300px; object-fit:cover; flex-shrink:0; margin-right:12px;">
+    <div style="display:flex; align-items:flex-start; padding:8px;">
 
-     <!---- Where descriptions are too long, we use CSS to limit the text to 4 lines and add an ellipsis at the end
-     // https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-line-clamp -->
-    <!-- overview text on the right -->
-    <p style="font-size:18px; color:#333; line-height:1.6; margin:0; flex:1; 
-          overflow:hidden; display:-webkit-box; -webkit-line-clamp:3; 
-          -webkit-box-orient:vertical;">
-  {{ movie.overview }}
-</p>
+      <!-- movie poster on the left -->
+      <img [src]="getImageUrl(movie.poster_path)"
+           style="width:250x; height:375px; object-fit:cover; flex-shrink:0; border-radius:4px;">
 
-  </div>
+      <ion-card-content style="padding:0 0 0 12px;">
+        <!-- movie overview text truncated to 4 lines -->
+        <p style="font-size:18px; color:#333; line-height:1.6; margin:0;
+                  overflow:hidden; display:-webkit-box; -webkit-line-clamp:4;
+                  -webkit-box-orient:vertical;">
+          {{ movie.overview }}
+        </p>
+      </ion-card-content>
+
+    </div>
+
+  </ion-card>
 
 </ion-content>

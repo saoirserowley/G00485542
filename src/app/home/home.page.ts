@@ -11,8 +11,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent,
-  IonButton, IonList, IonItem, IonLabel,
-  IonImg, IonButtons, IonIcon, IonSearchbar
+  IonButton, IonButtons, IonIcon, IonSearchbar,
+  IonCard, IonCardContent, IonCardHeader, IonCardTitle
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { heart, home } from 'ionicons/icons';
@@ -25,12 +25,12 @@ import { heart, home } from 'ionicons/icons';
   selector: 'app-home',
   templateUrl: './home.page.html',
   standalone: true,
-  imports: [
+ imports: [
     CommonModule,
     FormsModule,
     IonHeader, IonToolbar, IonTitle, IonContent,
-    IonButton, IonList, IonItem, IonLabel,
-    IonImg, IonButtons, IonIcon, IonSearchbar
+    IonButton, IonButtons, IonIcon, IonSearchbar,
+    IonCard, IonCardContent, IonCardHeader, IonCardTitle
   ]
 })
 export class HomePage implements OnInit {

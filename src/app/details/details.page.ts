@@ -10,7 +10,8 @@ import { MovieService } from '../movie.service';
 import { CommonModule } from '@angular/common';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent,
-  IonButton, IonButtons, IonIcon
+  IonButton, IonButtons, IonIcon,
+  IonCard, IonCardContent
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { heart, home } from 'ionicons/icons';
@@ -19,10 +20,11 @@ import { heart, home } from 'ionicons/icons';
   selector: 'app-details',
   templateUrl: './details.page.html',
   standalone: true,
-  imports: [
+imports: [
     CommonModule,
     IonHeader, IonToolbar, IonTitle, IonContent,
-    IonButton, IonButtons, IonIcon
+    IonButton, IonButtons, IonIcon,
+    IonCard, IonCardContent
   ]
 })
 export class DetailsPage implements OnInit {
