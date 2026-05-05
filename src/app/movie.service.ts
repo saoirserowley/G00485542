@@ -1,7 +1,7 @@
 // movie.service.ts
 // This is the service that handles all the TMDB API calls for the app
 // A service in Angular is a class that can be shared and reused across pages
-// I used this to understand how services work: https://angular.dev/guide/services
+// Used to understand how services work:https://angular.dev/guide/di/creating-and-using-services
 // General info on APIs: https://www.w3schools.com/js/js_api_intro.asp
 
 import { Injectable } from '@angular/core';
@@ -30,7 +30,7 @@ export class MovieService {
   public imageBase = 'https://image.tmdb.org/t/p/w500';
 
   // HttpClient is injected so we can use it to make API calls
-  // learned about dependency injection here: https://angular.dev/guide/di
+  // Dependancy injection guide: https://angular.dev/guide/di
   constructor(private http: HttpClient) {}
 
   // gets todays trending movies from TMDB

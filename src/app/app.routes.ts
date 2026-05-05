@@ -22,7 +22,7 @@ export const routes: Routes = [
   {
     // movie details page showing cast and crew for a selected movie
     // the colon means these are dynamic parameters passed through the url
-    // learned about route parameters here: https://angular.dev/guide/routing/router-tutorial
+    // Route Parameters Resource: https://angular.dev/guide/routing/define-routes
     path: 'movie-details/:id/:overview/:poster',
     loadComponent: () => import('./movie-details/movie-details.page').then(m => m.MovieDetailsPage)
   },
