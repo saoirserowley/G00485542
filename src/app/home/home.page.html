@@ -1,20 +1,55 @@
-<ion-header [translucent]="true">
+<!-- home.page.html -->
+<!-- This is the template for the home page of the app -->
+<!-- Ionic uses its own HTML tags like ion-header and ion-content instead of plain HTML -->
+<!-- https://ionicframework.com/docs/components -->
+
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <!-- showing the student number in the toolbar as required by the assignment -->
+    <ion-title>G00485542</ion-title>
+    <!-- favourites icon in the top right, clicking it brings you to the favourites page -->
+    <!-- learned about ion-buttons and placement here: https://ionicframework.com/docs/api/buttons -->
+    <ion-buttons slot="end">
+      <ion-button (click)="goToFavourites()">
+        <!-- heart icon from ionicons, registered in the typescript file -->
+        <!-- https://ionic.io/ionicons -->
+        <ion-icon name="heart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <!-- search bar for typing in a movie name -->
+  <!-- ngModel does two way binding so the searchQuery variable updates as the user types -->
+  <!-- https://angular.dev/guide/forms -->
+  <ion-searchbar
+    [(ngModel)]="searchQuery"
+    placeholder="Search Movie Name">
+  </ion-searchbar>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <!-- search button, calls the search() method when clicked -->
+  <!-- https://ionicframework.com/docs/api/button -->
+  <ion-button expand="full" (click)="search()">SEARCH</ion-button>
+
+  <!-- heading changes between "Today's Trending Movies" and search results -->
+  <h2>{{ heading }}</h2>
+
+  <!-- looping through the movies array and displaying each one -->
+  <!-- ngFor creates a new block of HTML for each movie in the array -->
+  <!-- https://angular.dev/guide/directives -->
+  <div *ngFor="let movie of movies" (click)="goToMovieDetails(movie)">
+
+    <!-- displaying the movie poster image -->
+    <!-- getImageUrl() builds the full url from the poster path TMDB returns -->
+    <!-- https://developer.themoviedb.org/docs/image-basics -->
+    <ion-img [src]="getImageUrl(movie.poster_path)"></ion-img>
+
+    <!-- showing the movie overview/description below the poster -->
+    <p>{{ movie.overview }}</p>
+
+    <!-- horizontal line to separate each movie -->
+    <hr>
   </div>
+
 </ion-content>
