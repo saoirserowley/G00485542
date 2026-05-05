@@ -1,13 +1,76 @@
-<ion-header [translucent]="true">
+<!-- movie-details.page.html -->
+<!-- Shows the details of a selected movie including cast and crew -->
+<!-- https://ionicframework.com/docs/components -->
+
+<ion-header>
   <ion-toolbar>
-    <ion-title>movie-details</ion-title>
+    <!-- showing the movie title area with home and favourites icons -->
+    <ion-buttons slot="start">
+      <ion-button (click)="goToHome()">
+        <ion-icon name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Movie Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToFavourites()">
+        <ion-icon name="heart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">movie-details</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+
+  <!-- movie overview passed in from the home page -->
+  <p style="padding: 16px; font-size: 16px; line-height: 1.6;">
+    {{ overview }}
+  </p>
+
+  <!-- add or remove from favourites button -->
+  <!-- the text changes depending on whether the movie is already a favourite -->
+  <!-- https://angular.dev/guide/directives -->
+  <ion-button expand="full" (click)="toggleFavourite()">
+    {{ isFavourite ? 'Remove From Favourites' : 'Add To Favourites' }}
+  </ion-button>
+
+  <!-- cast section -->
+  <h2 style="padding: 10px 16px; font-size: 20px; font-weight: bold;">Cast</h2>
+
+  <!-- looping through the cast array and showing each member -->
+  <!-- clicking a cast member navigates to their details page -->
+  <!-- https://angular.dev/guide/directives -->
+  <div *ngFor="let member of cast"
+       (click)="goToDetails(member.id)"
+       style="display:flex; padding:10px 16px; border-bottom:1px solid #ddd; cursor:pointer; align-items:center;">
+
+    <img [src]="getImageUrl(member.profile_path)"
+         style="width:80px; height:100px; object-fit:cover; flex-shrink:0; margin-right:12px;">
+
+    <div>
+      <!-- cast members name and the character they play -->
+      <p style="margin:0; font-weight:bold; font-size:16px;">{{ member.name }}</p>
+      <p style="margin:4px 0 0 0; font-size:14px; color:#555;">{{ member.character }}</p>
+    </div>
+
+  </div>
+
+  <!-- crew section -->
+  <h2 style="padding: 10px 16px; font-size: 20px; font-weight: bold;">Crew</h2>
+
+  <!-- looping through the crew array and showing each member -->
+  <div *ngFor="let member of crew"
+       (click)="goToDetails(member.id)"
+       style="display:flex; padding:10px 16px; border-bottom:1px solid #ddd; cursor:pointer; align-items:center;">
+
+    <img [src]="getImageUrl(member.profile_path)"
+         style="width:80px; height:100px; object-fit:cover; flex-shrink:0; margin-right:12px;">
+
+    <div>
+      <!-- crew members name and their job title -->
+      <p style="margin:0; font-weight:bold; font-size:16px;">{{ member.name }}</p>
+      <p style="margin:4px 0 0 0; font-size:14px; color:#555;">{{ member.job }}</p>
+    </div>
+
+  </div>
+
 </ion-content>
