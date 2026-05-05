@@ -1,18 +1,12 @@
 <!-- home.page.html -->
-<!-- This is the template for the home page of the app -->
-<!-- Ionic uses its own HTML tags like ion-header and ion-content instead of plain HTML -->
+<!-- Template for the home page -->
 <!-- https://ionicframework.com/docs/components -->
 
 <ion-header>
   <ion-toolbar>
-    <!-- showing the student number in the toolbar as required by the assignment -->
     <ion-title>G00485542</ion-title>
-    <!-- favourites icon in the top right, clicking it brings you to the favourites page -->
-    <!-- learned about ion-buttons and placement here: https://ionicframework.com/docs/api/buttons -->
     <ion-buttons slot="end">
       <ion-button (click)="goToFavourites()">
-        <!-- heart icon from ionicons, registered in the typescript file -->
-        <!-- https://ionic.io/ionicons -->
         <ion-icon name="heart"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -20,36 +14,33 @@
 </ion-header>
 
 <ion-content>
-  <!-- search bar for typing in a movie name -->
-  <!-- ngModel does two way binding so the searchQuery variable updates as the user types -->
-  <!-- https://angular.dev/guide/forms -->
   <ion-searchbar
     [(ngModel)]="searchQuery"
     placeholder="Search Movie Name">
   </ion-searchbar>
 
-  <!-- search button, calls the search() method when clicked -->
-  <!-- https://ionicframework.com/docs/api/button -->
   <ion-button expand="full" (click)="search()">SEARCH</ion-button>
 
-  <!-- heading changes between "Today's Trending Movies" and search results -->
-  <h2>{{ heading }}</h2>
+  <h2 style="padding: 10px 16px;">{{ heading }}</h2>
 
-  <!-- looping through the movies array and displaying each one -->
-  <!-- ngFor creates a new block of HTML for each movie in the array -->
-  <!-- https://angular.dev/guide/directives -->
-  <div *ngFor="let movie of movies" (click)="goToMovieDetails(movie)">
+  <!-- each movie displayed as a card with image on left and text on right -->
+  <div *ngFor="let movie of movies"
+     (click)="goToMovieDetails(movie)"
+     style="display:flex; padding:10px 16px; border-bottom:1px solid #ddd; cursor:pointer; align-items:flex-start; width:100%;">
 
-    <!-- displaying the movie poster image -->
-    <!-- getImageUrl() builds the full url from the poster path TMDB returns -->
-    <!-- https://developer.themoviedb.org/docs/image-basics -->
-    <ion-img [src]="getImageUrl(movie.poster_path)"></ion-img>
+    <!-- movie poster on the left -->
+    <img [src]="getImageUrl(movie.poster_path)"
+     style="width:200px; height:300px; object-fit:cover; flex-shrink:0; margin-right:12px;">
 
-    <!-- showing the movie overview/description below the poster -->
-    <p>{{ movie.overview }}</p>
+     <!---- Where descriptions are too long, we use CSS to limit the text to 4 lines and add an ellipsis at the end
+     // https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-line-clamp -->
+    <!-- overview text on the right -->
+    <p style="font-size:18px; color:#333; line-height:1.6; margin:0; flex:1; 
+          overflow:hidden; display:-webkit-box; -webkit-line-clamp:3; 
+          -webkit-box-orient:vertical;">
+  {{ movie.overview }}
+</p>
 
-    <!-- horizontal line to separate each movie -->
-    <hr>
   </div>
 
 </ion-content>

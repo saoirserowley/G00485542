@@ -1,27 +1,37 @@
-#container {
-  text-align: center;
+// home.page.scss
+// Styles for the home page
+// SCSS is like CSS but with extra features like nesting
+// https://www.w3schools.com/sass/sass_intro.php
+// Ionic styling guide: https://ionicframework.com/docs/theming/basics
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
+:host {
+  // styling each movie card
+  div {
+    padding: 10px 16px;
+    cursor: pointer;
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+  // limiting image size so they dont take up the full screen
+  ion-img {
+    width: 150px;
+    height: 220px;
+    object-fit: cover;
+    margin: 10px 0;
+  }
 
-  color: #8c8c8c;
+  p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
 
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+  h2 {
+    padding: 10px 16px;
+    font-size: 18px;
+    font-weight: bold;
+  }
 }
