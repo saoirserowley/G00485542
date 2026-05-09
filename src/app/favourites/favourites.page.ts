@@ -42,7 +42,7 @@ export class FavouritesPage {
   // ionViewWillEnter fires every time the page is navigated to
   // this is better than ngOnInit here because ngOnInit only fires once
   // if the user adds a favourite and comes back, we need the list to refresh
-  // learned about ionic lifecycle here: https://ionicframework.com/docs/angular/lifecycle
+  // Ionic Lifecyle reference: https://ionicframework.com/docs/angular/lifecycle
   ionViewWillEnter() {
     this.loadFavourites();
   }

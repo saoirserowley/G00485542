@@ -1,7 +1,7 @@
 // home.page.ts
 // This is the main page of the app, first thing the user sees when they open it
 // Shows todays trending movies by default and lets the user search for movies
-// Really useful for understanding how pages work in Ionic: https://ionicframework.com/docs/angular/your-first-app
+// Useful for understanding how pages work in Ionic: https://ionicframework.com/docs/angular/your-first-app
 // https://angular.dev/guide/forms
 
 import { Component, OnInit } from '@angular/core';

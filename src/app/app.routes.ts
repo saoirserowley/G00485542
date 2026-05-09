@@ -1,7 +1,7 @@
 // app.routes.ts
 // This file sets up all the navigation routes for the app
 // Each route maps a URL to a specific page component
-// Really helpful for understanding routing: https://angular.dev/guide/routing
+// Helpful for understanding routing: https://angular.dev/guide/routing
 // Ionic navigation docs: https://ionicframework.com/docs/angular/navigation
 
 import { Routes } from '@angular/router';
@@ -9,7 +9,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     // default route, redirects to home when the app first opens
-    // https://www.w3schools.com/angular/angular_routing.asp
+    // https://angular.dev/guide/routing/redirecting-routes
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',

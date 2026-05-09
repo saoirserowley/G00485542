@@ -1,5 +1,5 @@
 // app.component.ts
-// This is the root component of the app, the shell that holds the whole app together
+// This is the root component of the app,  that every page loads inside of
 // Every page gets displayed inside the ion-router-outlet below
 // Resource used: https://angular.dev/guide/components
 // Ionic app setup: https://ionicframework.com/docs/angular/your-first-app

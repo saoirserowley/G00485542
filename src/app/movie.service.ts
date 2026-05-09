@@ -1,7 +1,7 @@
 // movie.service.ts
 // This is the service that handles all the TMDB API calls for the app
 // A service in Angular is a class that can be shared and reused across pages
-// Used to understand how services work:https://angular.dev/guide/di/creating-and-using-services
+// https://angular.dev/guide/di/creating-and-using-services
 // General info on APIs: https://www.w3schools.com/js/js_api_intro.asp
 
 import { Injectable } from '@angular/core';

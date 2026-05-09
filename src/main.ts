@@ -1,7 +1,7 @@
 // main.ts
-// This is the entry point of the app, it bootstraps the root component
-// provideHttpClient is needed so we can make HTTP requests to the TMDB API
-// https://angular.dev/guide/http/making-requests
+// Entry point of the app - Angular needs this file to get the app started
+// Added provideHttpClient so HTTP requests are available everywhere in the app, used for the TMDB API calls
+// https://angular.dev/api/common/http/provideHttpClient
 import { bootstrapApplication } from '@angular/platform-browser';
 import { RouteReuseStrategy, provideRouter, withPreloading, PreloadAllModules } from '@angular/router';
 import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalone';
