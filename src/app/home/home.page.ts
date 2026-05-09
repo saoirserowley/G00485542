@@ -100,7 +100,8 @@ export class HomePage implements OnInit {
   }
 
   // builds the full image url from just the poster path TMDB gives us
-  // TMDB only returns the path so we need to add the base url ourselves
+  // TMDB only returns the path so we need to add the base url
+  // if no image is available, a placeholder image generated using Google Gemini is shown
   // https://developer.themoviedb.org/docs/image-basics
   getImageUrl(posterPath: string): string {
     if (!posterPath || posterPath === 'none') {

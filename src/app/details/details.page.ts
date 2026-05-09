@@ -92,6 +92,7 @@ export class DetailsPage implements OnInit {
   }
 
   // builds the full image url from the profile or poster path
+  // if no image is available, a placeholder image generated using Google Gemini is shown
   // https://developer.themoviedb.org/docs/image-basics
   getImageUrl(path: string): string {
     if (!path || path === 'none') {
