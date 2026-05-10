@@ -73,7 +73,7 @@ export class HomePage implements OnInit {
   // if nothing is typed it just shows trending movies instead
   // https://developer.themoviedb.org/docs
   search() {
-    if (this.searchQuery.trim() === '') {
+    if (this.searchQuery === '') {
       this.loadTrending();
     } else {
       this.movieService.searchMovies(this.searchQuery).subscribe((data: any) => {

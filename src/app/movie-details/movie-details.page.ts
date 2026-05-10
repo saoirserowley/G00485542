@@ -94,7 +94,12 @@ export class MovieDetailsPage implements OnInit {
   // https://www.w3schools.com/jsref/prop_win_localstorage.asp
   checkIfFavourite() {
     const favourites = JSON.parse(localStorage.getItem('favourites') || '[]');
-    this.isFavourite = favourites.some((f: any) => f.id === this.movieId);
+    this.isFavourite = false;
+for (let f of favourites) {
+  if (f.id === this.movieId) {
+    this.isFavourite = true;
+  }
+}
   }
 
   // adds or removes the movie from favourites depending on current state
