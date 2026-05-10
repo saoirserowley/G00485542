@@ -35,7 +35,7 @@ export class MovieDetailsPage implements OnInit {
   movieId: number = 0;
   overview: string = '';
   poster: string = '';
-
+  title: string = '';
   // cast and crew arrays populated from the TMDB api
   cast: any[] = [];
   crew: any[] = [];
@@ -61,12 +61,14 @@ export class MovieDetailsPage implements OnInit {
     this.movieId = Number(this.route.snapshot.paramMap.get('id'));
     this.overview = this.route.snapshot.paramMap.get('overview') || '';
     this.poster = this.route.snapshot.paramMap.get('poster') || '';
+    this.title = this.route.snapshot.paramMap.get('title') || '';
 
     // storing the movie object so we can save it to favourites if needed
     this.movie = {
       id: this.movieId,
       overview: this.overview,
-      poster_path: this.poster
+      poster_path: this.poster,
+      title: this.title
     };
 
     // checking if this movie is already in the favourites list
@@ -129,6 +131,7 @@ export class MovieDetailsPage implements OnInit {
   }
 
   // builds the full image url from the profile path
+  // if no image is available, a placeholder image generated using Google Gemini is shown
   // https://developer.themoviedb.org/docs/image-basics
   getImageUrl(profilePath: string): string {
     if (!profilePath || profilePath === 'none') {

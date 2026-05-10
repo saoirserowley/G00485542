@@ -77,7 +77,8 @@ export class DetailsPage implements OnInit {
     this.router.navigate(['/movie-details',
       movie.id,
       movie.overview || 'No overview available',
-      movie.poster_path || 'none'
+      movie.poster_path || 'none',
+      movie.title || 'Unknown'
     ]);
   }
 

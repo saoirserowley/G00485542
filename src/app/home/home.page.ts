@@ -88,10 +88,11 @@ export class HomePage implements OnInit {
   // https://angular.dev/guide/routing
   goToMovieDetails(movie: any) {
     this.router.navigate(['/movie-details',
-      movie.id,
-      movie.overview || 'No overview available',
-      movie.poster_path || 'none'
-    ]);
+       movie.id,
+        movie.overview || 'No overview available',
+       movie.poster_path || 'none',
+      movie.title || 'Unknown'
+  ]);
   }
 
   // takes the user to the favourites page

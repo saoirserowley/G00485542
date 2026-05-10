@@ -69,6 +69,7 @@ export class FavouritesPage {
   }
 
   // builds the full image url from the poster path
+  // if no image is available, a placeholder image generated using Google Gemini is shown
   // https://developer.themoviedb.org/docs/image-basics
   getImageUrl(posterPath: string): string {
     if (!posterPath || posterPath === 'none') {
