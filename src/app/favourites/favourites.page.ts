@@ -10,8 +10,7 @@ import { MovieService } from '../movie.service';
 import { CommonModule } from '@angular/common';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent,
-  IonButton, IonButtons, IonIcon,
-  IonCard, IonCardContent
+  IonButton, IonButtons, IonIcon
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { heart, home } from 'ionicons/icons';
@@ -23,8 +22,7 @@ import { heart, home } from 'ionicons/icons';
   imports: [
     CommonModule,
     IonHeader, IonToolbar, IonTitle, IonContent,
-    IonButton, IonButtons, IonIcon,
-    IonCard, IonCardContent
+    IonButton, IonButtons, IonIcon
   ]
 })
 export class FavouritesPage {
@@ -42,7 +40,7 @@ export class FavouritesPage {
   // ionViewWillEnter fires every time the page is navigated to
   // this is better than ngOnInit here because ngOnInit only fires once
   // if the user adds a favourite and comes back, we need the list to refresh
-  // Ionic Lifecyle reference: https://ionicframework.com/docs/angular/lifecycle
+  // Ionic lifecycle reference: https://ionicframework.com/docs/angular/lifecycle
   ionViewWillEnter() {
     this.loadFavourites();
   }
@@ -59,7 +57,8 @@ export class FavouritesPage {
     this.router.navigate(['/movie-details',
       movie.id,
       movie.overview || 'No overview available',
-      movie.poster_path || 'none'
+      movie.poster_path || 'none',
+      movie.title || 'Unknown'
     ]);
   }
 
