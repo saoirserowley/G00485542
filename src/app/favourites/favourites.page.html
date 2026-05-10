@@ -31,35 +31,24 @@
     <p style="font-size:15px;">Go back to the home page and add some movies.</p>
   </div>
 
-  <!-- looping through the favourites array and showing each movie as a card -->
+  <!-- looping through the favourites array showing each movie as a card -->
   <!-- https://ionicframework.com/docs/api/card -->
-  <ion-card *ngFor="let movie of favourites">
+  <ion-card *ngFor="let movie of favourites"
+            style="margin: 8px;">
 
-    <div style="display:flex; align-items:center; padding:8px;">
+    <!-- movie poster taking up full card width -->
+    <img [src]="getImageUrl(movie.poster_path)"
+         style="width:100%; height:300px; object-fit:cover;">
 
-      <!-- movie poster on the left -->
-      <img [src]="getImageUrl(movie.poster_path)"
-           style="width:100px; height:150px; object-fit:cover; flex-shrink:0; border-radius:4px;">
+    <ion-card-content style="padding: 8px 12px;">
 
-      <ion-card-content style="padding: 0 0 0 12px; flex:1;">
+      <!-- details button navigates to the movie details page -->
+      <ion-button (click)="goToMovieDetails(movie)"
+          style="--background: #CAD3C1; --color: #333; --border-radius: 30px;">
+        DETAILS
+      </ion-button>
 
-        <!-- movie overview truncated to 3 lines -->
-        <p style="font-size:15px; color:#333; line-height:1.6; margin:0 0 12px 0;
-                  overflow:hidden; display:-webkit-box; -webkit-line-clamp:3;
-                  -webkit-box-orient:vertical;">
-          {{ movie.overview }}
-        </p>
-
-        <!-- details button navigates to the movie details page -->
-        <!-- same green styling as the other buttons in the app -->
-        <ion-button (click)="goToMovieDetails(movie)"
-            style="--background: #CAD3C1; --color: #333; --border-radius: 30px;">
-          DETAILS
-        </ion-button>
-
-      </ion-card-content>
-
-    </div>
+    </ion-card-content>
 
   </ion-card>
 
